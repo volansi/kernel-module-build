@@ -1,10 +1,11 @@
-FROM balenalib/genericx86-64-ext-ubuntu:focal-run
+#FROM balenalib/genericx86-64-ext-debian:latest
 
-# FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
+FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu-node
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -yy curl wget build-essential libelf-dev awscli bc flex libssl-dev python python3-pip bison software-properties-common 
+
 
 # install gcc 10
 RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update
