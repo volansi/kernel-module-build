@@ -1,14 +1,10 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
 
 RUN apt-get update && apt-get install -y curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison
-
-RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list && apt-get --allow-unauthenticated update && apt-get --allow-unauthenticated install gcc-9 libc6-dev
-
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
 ENV VERSION '2.71.3+rev5.prod'
-
 RUN BALENA_MACHINE_NAME=%%BALENA_MACHINE_NAME%% ./build.sh build --device %%BALENA_MACHINE_NAME%% --os-version "$VERSION" --src example_module
 
 CMD ./run.sh
