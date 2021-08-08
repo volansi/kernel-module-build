@@ -5,7 +5,7 @@ RUN install_packages curl wget build-essential libelf-dev awscli bc flex libssl-
 # install gcc 10
 RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list 
 
-RUN install_packages gcc-9 libc6-dev curl wget build-essential libelf-dev awscli bc flex libssl-dev pyhon bison python3-pip
+RUN install_packages gcc-9 libc6-dev curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison python3-pip
 
 RUN pip3 install awscli --upgrade --user
 
