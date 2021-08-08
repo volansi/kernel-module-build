@@ -11,6 +11,8 @@ RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update
 
 RUN apt-get install -yy gcc-9 libc6-dev
 
+RUN arm-linux-gnueabihf-gcc -v
+
 RUN pip3 install awscli --upgrade --user
 
 COPY . /usr/src/app
