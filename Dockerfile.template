@@ -2,7 +2,10 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu-node
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison
+RUN install_packages curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison
+
+RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list && install_packages gcc-9 libc6-dev
+
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
