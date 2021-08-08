@@ -6,11 +6,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -yy curl wget build-essential libelf-dev awscli bc flex libssl-dev python python3-pip bison software-properties-common 
 
-
 # install gcc 10
 RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update
 
-RUN apt-get install -yy gcc-10 libc6-dev
+RUN apt-get install -yy gcc-9 libc6-dev
 
 RUN pip3 install awscli --upgrade --user
 
