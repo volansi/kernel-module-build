@@ -1,11 +1,15 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
+FROM balenalib/genericx86-64-ext-ubuntu:focal-run
 
-RUN install_packages curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison
+# FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -yy curl wget build-essential libelf-dev awscli bc flex libssl-dev python python3-pip bison software-properties-common 
 
 # install gcc 10
-RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list 
+RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update
 
-RUN install_packages gcc-9 libc6-dev curl wget build-essential libelf-dev awscli bc flex libssl-dev python bison python3-pip
+RUN apt-get install -yy gcc-9 libc6-dev
 
 RUN pip3 install awscli --upgrade --user
 
